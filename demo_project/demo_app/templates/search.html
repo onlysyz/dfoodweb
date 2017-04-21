@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ search.media }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+    <style>
+    .axis path,
+    .axis line{
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+ 
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+ 
+    .MyRect {
+ 
+    }
+ 
+    .MyText {
+        fill: white;
+        text-anchor: middle;
+    }
+  </style>
+    <script src="{% static "RadarChart.js"%}"></script>  
+    <script src="{% static "d3.v3.min.js"%}"></script>
+    <h1>以下是水果的查询信息</h1>
+    <h4>苹果的热量和减肥功效</h4>
+    <div class="row">
+        <div class="col-xs-2">
+        <img src="{% static "apple.jpg"%}">
+        </div>
+        <div class="col-xs-4">
+        <div class="list-group">
+            <li class="list-group-item">
+                别名<span class="badge">新</span>
+            </li>
+            <li class="list-group-item">热量</li>
+            <li class="list-group-item">分类</li>
+        </div>
+        </div>
+        <div class="col-xs-4" id="zhu">
+            <script>
+                //画布大小
+    var width = 400;
+    var height = 200;
+ 
+    //在 body 里添加一个 SVG 画布    
+    var svg = d3.select("#zhu")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+ 
+    //画布周边的空白
+    var padding = {left:50, right:30, top:20, bottom:20};
+ 
+    //定义一个数组
+    var dataset = [6482, 3786, 1777, 1326, 1246, 1212, 1132, 1063,724];
+         
+    //x轴的比例尺
+    var xScale = d3.scale.ordinal()
+        .domain(d3.range(dataset.length))
+        .rangeRoundBands([0, width - padding.left - padding.right]);
+ 
+    //y轴的比例尺
+    var yScale = d3.scale.linear()
+        .domain([0,d3.max(dataset)])
+        .range([height - padding.top - padding.bottom, 0]);
+ 
+    //定义x轴
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom");
+         
+    //定义y轴
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left");
+ 
+    //矩形之间的空白
+    var rectPadding = 4;
+ 
+    //添加矩形元素
+    var rects = svg.selectAll(".MyRect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("class","MyRect")
+        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .attr("x", function(d,i){
+            return xScale(i) + rectPadding/2;
+        } )
+        .attr("y",function(d){
+            return yScale(d);
+        })
+        .attr("width", xScale.rangeBand() - rectPadding )
+        .attr("height", function(d){
+            return height - padding.top - padding.bottom - yScale(d);
+        })
+        .attr("fill","steelblue")        //填充颜色不要写在CSS里
+        .on("mouseover",function(d,i){
+            d3.select(this)
+                .attr("fill","yellow");
+        })
+        .on("mouseout",function(d,i){
+            d3.select(this)
+                .transition()
+                .duration(500)
+                .attr("fill","steelblue");
+        });
+ 
+    //添加文字元素
+    var texts = svg.selectAll(".MyText")
+        .data(dataset)
+        .enter()
+        .append("text")
+        .attr("class","MyText")
+        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .attr("x", function(d,i){
+            return xScale(i) + rectPadding/2;
+        } )
+        .attr("y",function(d){
+            return yScale(d);
+        })
+        .attr("dx",function(){
+            return (xScale.rangeBand() - rectPadding)/2;
+        })
+        .attr("dy",function(d){
+            return 20;
+        })
+        .text(function(d){
+            return d;
+        });
+ 
+    //添加x轴
+    svg.append("g")
+        .attr("class","axis")
+        .attr("transform","translate(" + padding.left + "," + (height - padding.bottom) + ")")
+        .call(xAxis); 
+         
+    //添加y轴
+    svg.append("g")
+        .attr("class","axis")
+        .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+        .call(yAxis);
+            </script>
+        </div>
+    </div>
+    <h4>评价:</h4>
+    <ul class="nav nav-list"> 
+     <li class="divider"></li>  
+    </ul>
+    <h4>营养信息</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>营养素</th>
+                <th>含量</th>
+                <th>营养素</th>
+                <th>含量</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>热量</th>
+                <th>50</th>
+                <th>碳水化合物</th>
+                <th>8</th>
+            </tr>
+            <tr>
+                <th>脂肪</th>
+                <th>20</th>
+                <th>蛋白质</th>
+                <th>11</th>
+            </tr>
+            <tr>
+                <th>纤维素</th>
+                <th>20</th>
+                <th>维生素A</th>
+                <th>22</th>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn" id="ding">
+          <a class="glyphicon glyphicon-thumbs-up" href="#">赞 {{ding}}   </a>           
+    </div>
+    <div class="btn" id="say">
+          <a class="glyphicon glyphicon-edit"  href="#">评论</a>
+    </div>
+    <div id="hid1" hidden="hidden">
+    <form role="form">
+        <div class="form-group">
+            <input type="email" class="form-control"  id="hid1" placeholder="评论">
+        </div>
+        <button type="submit" class="btn btn-default" >写评论</button>
+    </form>
+    </div>
+    <div>
+                        <h1>测试数据库查询</h1>
+                        <p>{{food_list.fruitName}}</p>
+    </div>
+    <div>
+        <h1>其他水果推荐</h1>
+        <div class="row">
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn1" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn2" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn3" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn4" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn5" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get">
+                    <button type="submit" class="btn btn-primary" id="btn6" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+      $("#ding").click(function(){
+        var num= {{ding}};
+         $.ajax({
+             url:"/ding",
+             type:'POST',
+             data:{num:num},
+             dataType:"json", 
+             success: function (arg) {
+                alert("2");
+                $("btn.a").html("22");
+             }
+ 
+         });
+      });
+    });
+    $("#say").click(function(){
+        $("#hid1").toggle();
+      });
+    </script>
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+{% load url from future %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>django-bootstrap-toolkit = Bootstrap support for Django</title>
+    <meta name="description" content="">
+    <meta name="author" content="Dylan Verheul">
+    <!--BootStrap core CSS-->
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
+<!--     <link rel="stylesheet" href="{% static "bootstrap.min.css"%}">
+ -->    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <!-- <script src="{% static "bootstrap.min.js"%}"></script>
+    <script src="../../static/js/jquery.min.js"></script> -->
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">健康管家</a>
+    </div>
+        <ul class="nav navbar-nav">
+                <li><a href="{% url 'home' %}" class="">主页</a></li>
+                <li><a href="{% url 'demo_app.views.demo_form' %}">私人推荐</a></li>
+                <li><a href="{% url 'formset' %}">水果广场</a></li>
+                <li><a href="{% url 'tabs' %}">卡路里计算器</a></li>
+                <li><a href="{% url 'pagination' %}">营养食谱</a></li>
+                <li><a href="{% url 'buttons' %}">讨论区</a></li>
+                <li><a href="{% url 'contact' %}">开发心得</a></li>
+            </ul>
+        </div>
+</nav>
+
+<div class="container">
+
+    {% bootstrap_messages %}
+
+    {% block content %}Empty page{% endblock %}
+
+    <p><hr></p>
+
+    <footer class="row">
+        <div class="span6">
+            <p>This is <a href="https://github.com/dyve/django-bootstrap-toolkit">django-bootstrap-toolkit</a></p>
+        </div>
+        <div class="span6" style="text-align:right">
+            <p>
+                &copy; <a href="http://twitter.com/dyve">Dylan Verheul</a> 2012
+                |
+                <a href="https://raw.github.com/dyve/django-bootstrap-toolkit/master/LICENSE">license</a>
+            </p>
+        </div>
+    </footer>
+
+</div> <!-- container -->
+
+</body>
+</html>

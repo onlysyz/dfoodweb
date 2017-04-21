@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ formset.media }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+    <style type="text/css">
+        .jianju{
+            margin-top: 30px;
+        }
+        .img-circle{
+             border-radius: 50%;
+        }
+    </style>
+    <h1>从这里打开您的健康之门</h1>
+
+    <p>&nbsp;</p>
+    <div class="container">
+            <form class="form-horizontal" action="/search" method="get">
+                <div class="center-block" style="width:600px">
+                    <div class="input-group">
+                        <input type="text" name="food" class="form-control input-lg" placeholder="水果名称">
+                        <span class="input-group-btn">
+                    <button class="btn btn-info btn-search" >搜索</button>
+                    </span>
+                    </div>
+                    </div>
+            </form>
+            <div class="center-block jianju" style="width:200px">
+                <h5>-常见水果-</h5>
+            </div>
+            <div class="jianju">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                </div>
+            </div>
+            <div class="jianju">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                </div>
+            </div>
+            <div class="jianju">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}" class="img-circle">
+                    </div>
+                </div>
+            </div>
+                    
+                    
+                    
+
+{% endblock %}

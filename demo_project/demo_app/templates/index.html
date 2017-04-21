@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="well">
+        <h1>欢迎来到健康管家系统！</h1>
+        <p>用扫描器扫描水果上条形码即可查看水果信息</p>
+    </div>
+    {% load staticfiles %}
+    <div class="row">
+    <div class="col-xs-4">
+    <div class="well">
+            <table class="table">
+                <caption>本周健康小贴士</caption>
+                <thead>
+                    <tr>
+                        <th>健康小贴士1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>健康小贴士2</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士3</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士4</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士5</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士6</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士7</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士8</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士9</th>
+                    </tr>
+                    <tr>
+                        <th>健康小贴士10</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-6">
+    <div id="myCarousel" class="carousel slide" style="width: 720px">
+        <!-- 轮播-->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="{% static "pic2.png"%}" alt="First slide">
+            </div>
+            <div class="item">
+                <img src="{% static "pic3.png"%}" alt="Second slide">
+            </div>
+            <div class="item">
+                <img src="{% static "pic1.png"%}" alt="Third slide">
+            </div>
+        </div>
+    <!-- 轮播导航-->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+        <div class="well">
+            <table class="table">
+                <caption>本周水果热度排行榜</caption>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>名称</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>苹果</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>香蕉</th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th>西瓜</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="well">
+            <table class="table">
+                <caption>本周水果评价排行榜</caption>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>名称</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>苹果</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>香蕉</th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th>西瓜</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="well">
+            <table class="table">
+                <caption>本周水果折扣排行榜</caption>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>名称</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>苹果</th>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <th>香蕉</th>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <th>西瓜</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <p>A big thanks to all the people that worked on Django and Bootstrap.</p>
+
+{% endblock %}

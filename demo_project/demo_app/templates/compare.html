@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ formset.media }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+    <script src="{% static "RadarChart.js"%}"></script>  
+    <script src="{% static "d3.v3.min.js"%}"></script>
+    <style type="text/css">
+        .jianju{
+            margin-bottom: 20px;
+            margin-left:90px;
+        }
+        .shang{
+            margin-bottom: 30px;
+        }
+    </style>
+    <div class="center-block" style="width: 200px">
+        <h1>比较结果</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="jianju">
+            <img src="{% static "apple.jpg"%}">
+            </div>
+                <div class="panel panel-default pull-down" style="height: 100px">
+                    <div class="shang">
+                        <label>热量:50大卡</label>
+                        <label>&emsp;&emsp;脂肪:28大卡</label>
+                        <label>&emsp;&emsp;纤维素:30大卡</label>
+                    </div>
+                    <div class="xia">
+                        <label>热量:50大卡</label>
+                        <label>&emsp;&emsp;脂肪:28大卡</label>
+                        <label>&emsp;&emsp;纤维素:30大卡</label>
+                    </div>
+                </div>
+        </div>
+        <div class="col-xs-4">
+            <div id="chart" style='width:400px;margin:0px;'></div>   
+        </div>
+        <div class="col-xs-4">
+            <div class="jianju">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="panel panel-default" style="height: 100px">
+                <div class="shang">
+                    <label>热量:50大卡</label>
+                    <label>&emsp;&emsp;脂肪:28大卡</label>
+                    <label>&emsp;&emsp;纤维素:30大卡</label>
+                </div>
+                <div class="xia">
+                    <label>热量:50大卡</label>
+                    <label>&emsp;&emsp;脂肪:28大卡</label>
+                    <label>&emsp;&emsp;纤维素:30大卡</label>
+                </div>
+            </div>             
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static "ra2.js"%}"></script>
+    <script  type="text/javascript" >  
+        radar('#chart','{% static "type.csv"%}','{% static "data.csv"%}');  
+    </script>  
+        <h5>其他水果推荐</h5>
+        <div class="row">
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+            <div class="col-xs-2">
+                <img src="{% static "apple.jpg"%}">
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn1" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn2" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn3" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn4" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get"> 
+                    <button type="submit" class="btn btn-primary" id="btn5" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+            <div class="col-xs-2">
+                <form action="/compare" method="get">
+                    <button type="submit" class="btn btn-primary" id="btn6" style="width: 120px">加入比较</button>
+                </form>
+            </div>
+    </div>
+{% endblock %}

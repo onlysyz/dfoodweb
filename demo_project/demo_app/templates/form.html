@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+    {% load staticfiles %}
+    <style type="text/css">
+        .jianju{
+            margin-bottom:30px;
+        }
+        .leftju{
+            margin-left: 30px;
+        }
+        .img-circle{
+             border-radius: 50%;
+        }
+    </style>
+    <script src="{% static "jquery.raty.min.js"%}"></script>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="panel panel-primary">
+                <div class="leftju">
+                    <img src="{% static "per1.jpg"%}" class="img-circle">
+                    <div class="center-block" style="width: 100px">
+                        <label>用户12138</label>
+                    </div>
+                </div>
+                <div class="center-block" style="width: 180px">
+                    <a href="http://www.bootcss.com/" class="btn btn-primary">返回主页</a>
+                    <a href="http://www.bootcss.com/" class="btn btn-primary">编辑资料</a>
+                </div>
+                    <label class="center-block jianju" style="width: 180px">用户名</label>
+                    <label class="center-block jianju" style="width: 180px">性别</label>
+                    <label class="center-block jianju" style="width: 180px">年龄</label>
+                    <label class="center-block jianju" style="width: 180px">爱好</label>
+                    <label class="center-block jianju" style="width: 180px">口味</label>
+            </div>
+        </div>
+        <div class="col-xs-9">
+            <div class="panel panel-succes">
+                <div class="jianju">
+                <div class="leftju">
+                    <h5>今日推荐</h5>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img src="{% static "apple.jpg"%}">
+                        <div class="leftju">
+                            <h5>苹果</h5>
+                        </div>
+                    </div>
+                    <div class="col-xs-9">
+                        <h5>推荐指数:</h5>
+                        <div id="div_jQueryRaty">
+                        </div>
+                        <h5>推荐理由:</h5> 
+                    </div>
+                </div>
+                </div>
+                <hr>
+                <h5>最近浏览记录</h5>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                </div>
+                <hr>
+                <h5>您可能喜欢</h5>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="{% static "apple.jpg"%}">
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#div_jQueryRaty').raty({ 
+            starOff: "{% static "star-off.png"%}", //指针离开时星星的图片
+            starOn: "{% static "star-on.png"%}", // 指针在星星上方时星星的图片
+            score: 3 ,
+        });
+    </script>
+{% endblock %}
