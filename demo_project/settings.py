@@ -13,6 +13,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -142,6 +147,8 @@ INSTALLED_APPS = (
 
     'bootstrap_toolkit',
     'demo_app',
+    'ckeditor',
+    'ckeditor_uploader',
 )
 
 # A sample logging configuration. The only tangible logging

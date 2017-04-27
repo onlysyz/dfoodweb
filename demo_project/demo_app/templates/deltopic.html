@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+	<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+    <div class="container">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-8">
+			<label>发布话题</label>
+			<div class="row">
+				<div class="col-sm-3">
+      				<select class="form-control">
+      					<option>选择版块</option>
+      					<option>健康贴士</option>
+      					<option>养生杂谈</option>
+      					<option>水果信息</option>
+      					<option>专家讲座</option>
+      					<option>板块建议</option>
+    				</select>
+    			</div>
+    			<div class="col-sm-8">
+    				<input type="text" class="form-control" id="title" placeholder="标题：一句话说明你遇到的问题或想分享的经验">
+    			</div>
+    		</div>
+    		<div class="">
+    		<textarea name="editor1"></textarea>
+        	<script>
+            	CKEDITOR.replace( 'editor1' , {uiColor: '#9AB8F3'});
+        	</script>
+    		</div>
+    		<div class="col-sm-12">
+				<div class="pull-right">
+					<div class="btn btn-default">取消</div>
+					<div class="btn btn-primary">发布</div>
+				</div>   
+    		</div>
+		</div>
+	</div>
+
+{% endblock %}

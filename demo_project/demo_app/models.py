@@ -8,6 +8,12 @@ class News(models.Model):
 	newsTitle=models.CharField(max_length=25)
 	newsArticle=models.CharField(max_length=128)
 
-class Fruit(models.Model):
-	fruitName=models.CharField(max_length=20)
-	fruitPrice=models.CharField(max_length=8)
+class helfruit(models.Model):
+	rfoodname=models.CharField(max_length=20)
+	rheat=models.CharField(max_length=8)
+	rfat=models.CharField(max_length=8)
+	rcellulose=models.CharField(max_length=8)
+	rco2=models.CharField(max_length=8)
+	rprotein=models.CharField(max_length=8)
+	rvia=models.CharField(max_length=8)
+	raccess=models.CharField(max_length=128)

@@ -75,7 +75,7 @@ def demo_formset(request):
 def demo_search(request):
     from demo_app import models
     foodname=request.GET.get('food')
-    food_list=models.Fruit.objects.get(fruitName=foodname)
+    food_list=models.helfruit.objects.get(rfoodname=foodname)
     layout = request.GET.get('layout', 'vertical')
     form = WidgetsForm()
     ding=cache.get('ding');

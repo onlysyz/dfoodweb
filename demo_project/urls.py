@@ -28,5 +28,6 @@ urlpatterns = patterns('',
     url(r'^buttons$', TemplateView.as_view(template_name='buttons.html'), name="buttons"),
     url(r'^search$', 'demo_app.views.demo_search', {}, "search"),
     url(r'^ding$', "demo_app.views.demo_ding"),
+    url(r'^deltopic$', TemplateView.as_view(template_name='deltopic.html'), name="deltopic"),
     url(r'^compare$',"demo_app.views.demo_compare"),
 )
