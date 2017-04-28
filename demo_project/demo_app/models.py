@@ -17,3 +17,13 @@ class helfruit(models.Model):
 	rprotein=models.CharField(max_length=8)
 	rvia=models.CharField(max_length=8)
 	raccess=models.CharField(max_length=128)
+
+class user(models.Model):
+	username=models.CharField(max_length=12)
+	password=models.CharField(max_length=20)
+	sex=models.CharField(max_length=2)
+	age=models.CharField(max_length=4)
+	hobby=models.CharField(max_length=20)
+	taste=models.CharField(max_length=12)
+	title=models.CharField(max_length=64)
+	collect=models.CharField(max_length=12)

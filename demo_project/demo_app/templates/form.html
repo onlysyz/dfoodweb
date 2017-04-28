@@ -22,18 +22,20 @@
                 <div class="leftju">
                     <img src="{% static "per1.jpg"%}" class="img-circle">
                     <div class="center-block" style="width: 100px">
-                        <label>用户12138</label>
+                        <label>{{user_list.username}}</label>
                     </div>
                 </div>
                 <div class="center-block" style="width: 180px">
-                    <a href="http://www.bootcss.com/" class="btn btn-primary">返回主页</a>
-                    <a href="http://www.bootcss.com/" class="btn btn-primary">编辑资料</a>
+                    <a href="#" class="btn btn-primary">返回主页</a>
+                    <a href="#" class="btn btn-primary">编辑资料</a>
                 </div>
-                    <label class="center-block jianju" style="width: 180px">用户名</label>
-                    <label class="center-block jianju" style="width: 180px">性别</label>
-                    <label class="center-block jianju" style="width: 180px">年龄</label>
-                    <label class="center-block jianju" style="width: 180px">爱好</label>
-                    <label class="center-block jianju" style="width: 180px">口味</label>
+                    <label class="center-block jianju" style="width: 180px">用户名&emsp;&emsp;{{user_list.username}}</label>
+                    <label class="center-block jianju" style="width: 180px">性别&emsp;&emsp;&emsp;{{user_list.sex}}</label>
+                    <label class="center-block jianju" style="width: 180px">年龄&emsp;&emsp;&emsp;{{user_list.age}}</label>
+                    <label class="center-block jianju" style="width: 180px">爱好&emsp;&emsp;&emsp;{{user_list.hobby}}</label>
+                    <label class="center-block jianju" style="width: 180px">口味&emsp;&emsp;&emsp;{{user_list.taste}}</label>
+                    <label class="center-block jianju" style="width: 180px">个性签名</label>
+                    <label class="center-block jianju" style="width: 180px">{{user_list.title}}</label>
             </div>
         </div>
         <div class="col-xs-9">

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+    {% load staticfiles %}
+    <style type="text/css">
+        .jianju{
+            margin-bottom:20px;
+        }
+        .leftju{
+            margin-left: 20px;
+        }
+        .img-circle{
+             border-radius: 50%;
+        }
+        .bigleftju{
+            margin-left: 50px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="panel panel-primary">
+                <div class="leftju">
+                    <img src="{% static "per1.jpg"%}" class="img-circle">
+                    <div class="center-block" style="width: 100px">
+                        <label>{{user_list.username}}</label>
+                    </div>
+                </div>
+                <div class="center-block" style="width: 180px">
+                    <a href="#" class="btn btn-primary">返回主页</a>
+                    <a href="{% url 'edituser' %}" class="btn btn-primary">编辑资料</a>
+                </div>
+                    <label class="center-block jianju" style="width: 180px">用户名&emsp;&emsp;{{user_list.username}}</label>
+                    <label class="center-block jianju" style="width: 180px">性别&emsp;&emsp;&emsp;{{user_list.sex}}</label>
+                    <label class="center-block jianju" style="width: 180px">年龄&emsp;&emsp;&emsp;{{user_list.age}}</label>
+                    <label class="center-block jianju" style="width: 180px">爱好&emsp;&emsp;&emsp;{{user_list.hobby}}</label>
+                    <label class="center-block jianju" style="width: 180px">口味&emsp;&emsp;&emsp;{{user_list.taste}}</label>
+                    <label class="center-block jianju" style="width: 180px">个性签名</label>
+                    <label class="center-block jianju" style="width: 180px">{{user_list.title}}</label>
+            </div>
+        </div>
+        <div class="col-xs-9">
+                <h5>基本信息</h5>
+                <hr>
+                <div class="bigleftju">
+                <form class="form-horizontal" action="changeuser" method="post">
+                    <div class="input-group">
+                        <div class="jianju"">
+                            <label>用户名&emsp;</label>
+                            <input type="text" style="width: 300px" name="food1" class="form leftju" placeholder="{{user_list.username}}">
+                        </div>
+                        <div class="jianju">
+                            <label>性&emsp;&emsp;别</label>
+                            <input type="text" style="width: 300px" name="food2" class="form leftju" placeholder="{{user_list.sex}}">
+                        </div>
+                        <div class="jianju">
+                            <label>年&emsp;&emsp;龄</label>
+                            <input type="text" style="width: 300px" name="food3" class="form leftju" placeholder="{{user_list.age}}">
+                        </div>
+                        <div class="jianju">
+                            <label>爱&emsp;&emsp;好</label>
+                            <input type="text" style="width: 300px" name="food4" class="form leftju" placeholder="{{user_list.hobby}}">
+                        </div>
+                        <div class="jianju">
+                            <label>口&emsp;&emsp;味</label>
+                            <input type="text" style="width: 300px" name="food5" class="form leftju" placeholder="{{user_list.taste}}">
+                        </div>
+                        <div class="jianju">
+                            <label>个性签名</label>
+                            <input type="text" style="width: 300px" name="food6" class="form leftju" placeholder="{{user_list.title}}">
+                        </div>
+                    </div>
+                </form>
+                </div>
+                <div class="pull-right">
+                    <div class="btn btn-default">还原</div>
+                    <div class="btn btn-primary">保存</div>
+                </div>
+        </div>
+    </div>
+   
+{% endblock %}

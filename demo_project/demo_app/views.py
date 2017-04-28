@@ -1,3 +1,4 @@
+# -*- coding:utf8 -*-
 from django.contrib import messages
 from django.forms.formsets import formset_factory
 from django.shortcuts import render_to_response
@@ -27,6 +28,8 @@ def demo_form_with_template(request):
     }))
 
 def demo_form(request):
+    from demo_app import models
+    user_list=models.user.objects.get(username='测试用户1')
     layout = request.GET.get('layout')
     if not layout:
         layout = 'vertical'
@@ -39,7 +42,16 @@ def demo_form(request):
     return render_to_response('form.html', RequestContext(request, {
         'form': form,
         'layout': layout,
+        'user_list': user_list,
     }))
+
+def demo_edituser(request):
+    from demo_app import models
+    user_list=models.user.objects.get(username='测试用户1')
+    return render_to_response('edituser.html', RequestContext(request, {
+        'user_list': user_list,
+    }))
+
 
 def demo_form_inline(request):
     layout = request.GET.get('layout', '')
