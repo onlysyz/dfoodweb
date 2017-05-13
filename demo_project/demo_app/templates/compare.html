@@ -25,18 +25,17 @@
     <div class="row">
         <div class="col-xs-4">
             <div class="jianju">
-            <img src="{% static "apple.jpg"%}">
+            <img src="{% static fruit1img %}" width="120px" height="120px">
             </div>
-                <div class="panel panel-default pull-down" style="height: 100px">
+                <div class="panel panel-default pull-down" style="height: 100px;">
                     <div class="shang">
-                        <label>热量:50大卡</label>
-                        <label>&emsp;&emsp;脂肪:28大卡</label>
-                        <label>&emsp;&emsp;纤维素:30大卡</label>
+                        <label>热量:{{ food_list.rheat }}大卡</label>
+                        <label>&emsp;&emsp;脂肪:{{ food_list.rfat }}克</label>
+                        <label>&emsp;&emsp;纤维素:{{ food_list.rcellulose }}克</label>
                     </div>
                     <div class="xia">
-                        <label>热量:50大卡</label>
-                        <label>&emsp;&emsp;脂肪:28大卡</label>
-                        <label>&emsp;&emsp;纤维素:30大卡</label>
+                        <label>碳水化合物:{{ food_list.rco2 }}克</label>
+                        <label>&emsp;&emsp;蛋白质：{{ food_list.rprotein }}克</label>
                     </div>
                 </div>
         </div>
@@ -45,77 +44,38 @@
         </div>
         <div class="col-xs-4">
             <div class="jianju">
-                <img src="{% static "apple.jpg"%}">
+                <img src="{% static fruit2img %}" width="120px" height="120px">
             </div>
             <div class="panel panel-default" style="height: 100px">
                 <div class="shang">
-                    <label>热量:50大卡</label>
-                    <label>&emsp;&emsp;脂肪:28大卡</label>
-                    <label>&emsp;&emsp;纤维素:30大卡</label>
-                </div>
-                <div class="xia">
-                    <label>热量:50大卡</label>
-                    <label>&emsp;&emsp;脂肪:28大卡</label>
-                    <label>&emsp;&emsp;纤维素:30大卡</label>
-                </div>
+                        <label>热量:{{ food_list2.rheat }}大卡</label>
+                        <label>&emsp;&emsp;脂肪:{{ food_list2.rfat }}克</label>
+                        <label>&emsp;&emsp;纤维素:{{ food_list2.rcellulose }}克</label>
+                    </div>
+                    <div class="xia">
+                        <label>碳水化合物:{{ food_list2.rco2 }}克</label>
+                        <label>&emsp;&emsp;蛋白质：{{ food_list2.rprotein }}克</label>
+                    </div>
             </div>             
         </div>
     </div>
     <script type="text/javascript" src="{% static "ra2.js"%}"></script>
     <script  type="text/javascript" >  
-        radar('#chart','{% static "type.csv"%}','{% static "data.csv"%}');  
+        radar('#chart','{% static "type2.csv"%}','{% static name %}');  
     </script>  
         <h5>其他水果推荐</h5>
         <div class="row">
+            {% for i in compare_list %}
             <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
+                <img src="{% static i %}" width="120px" height="120px">
             </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
+            {% endfor %}
         </div>
         <div class="row">
-        <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn1" style="width: 120px">加入比较</button>
-                </form>
-            </div>
+            {% for i in food_new_list %}
             <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn2" style="width: 120px">加入比较</button>
-                </form>
+                <a href="/compare?fruit1={{food_list2.rfoodname}}&fruit2={{i.rfoodname}}" class="btn btn-primary" style="width: 120px">加入比较</a>
             </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn3" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn4" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn5" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get">
-                    <button type="submit" class="btn btn-primary" id="btn6" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-    </div>
+            {% endfor %}
+        </div>
 {% endblock %}

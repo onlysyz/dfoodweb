@@ -33,10 +33,10 @@
     <script src="{% static "RadarChart.js"%}"></script>  
     <script src="{% static "d3.v3.min.js"%}"></script>
     <h1>以下是水果的查询信息</h1>
-    <h4>苹果的热量和减肥功效</h4>
+    <h4>{{food_list.rfoodname}}的热量和减肥功效</h4>
     <div class="row">
         <div class="col-xs-2">
-        <img src="{% static "apple.jpg"%}">
+        <img src="{% static imageplace %}" width="120" height="120">
         </div>
         <div class="col-xs-4">
         <div class="list-group">
@@ -217,59 +217,22 @@
     <div>
         <h1>其他水果推荐</h1>
         <div class="row">
+            {% for i in compare_list %}
             <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
+                <img src="{% static i %}" width="120px" height="120px">
             </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
-            <div class="col-xs-2">
-                <img src="{% static "apple.jpg"%}">
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div>
         <div class="row">
+            {% for i in food_new_list %}
             <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn1" style="width: 120px">加入比较</button>
-                </form>
+                <a href="/compare?fruit1={{food_list.rfoodname}}&fruit2={{i.rfoodname}}" class="btn btn-primary" style="width: 120px">加入比较</a>
             </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn2" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn3" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn4" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get"> 
-                    <button type="submit" class="btn btn-primary" id="btn5" style="width: 120px">加入比较</button>
-                </form>
-            </div>
-            <div class="col-xs-2">
-                <form action="/compare" method="get">
-                    <button type="submit" class="btn btn-primary" id="btn6" style="width: 120px">加入比较</button>
-                </form>
-            </div>
+            {% endfor %}
         </div>
+        <!-- fruit1={{food_list.rfoodname}}&fruit2={{i.rfoodname}} -->
     </div>
     <script>
     $(document).ready(function(){
@@ -289,7 +252,12 @@
       });
     });
     $("#say").click(function(){
-        $("#hid1").toggle();
+        $('#hid1').toggle();
       });
+    // for(var i=1;i<=6;i++){
+    // $("#btn"+i).click(function(){
+    //     alert("1");
+    //   });
+    // }
     </script>
 {% endblock %}
