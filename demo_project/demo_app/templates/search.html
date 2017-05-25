@@ -30,13 +30,15 @@
         text-anchor: middle;
     }
   </style>
+    <script src="{% static "jquery.cookie.js" %}"></script>
     <script src="{% static "RadarChart.js"%}"></script>  
     <script src="{% static "d3.v3.min.js"%}"></script>
+    <script src="{% static "jquery.raty.min.js" %}"></script>
     <h1>以下是水果的查询信息</h1>
     <h4>{{food_list.rfoodname}}的热量和减肥功效</h4>
     <div class="row">
         <div class="col-xs-2">
-        <img src="{% static imageplace %}" width="120" height="120">
+        <img src="{% static imageplace %}" jqimg="{% static imageplace %}" id="img1" width="120" height="120">
         </div>
         <div class="col-xs-4">
         <div class="list-group">
@@ -47,8 +49,16 @@
                 </div>
                 <span class="badge">新</span>
             </li>
-            <li class="list-group-item">热量</li>
-            <li class="list-group-item">分类</li>
+            <li class="list-group-item">热量
+            <div class="pull-right">
+                    54大卡
+                </div>
+            </li>
+            <li class="list-group-item">分类
+            <div class="pull-right">
+                    水果
+                </div>
+            </li>
         </div>
         </div>
         <div class="col-xs-4" id="zhu">
@@ -162,6 +172,7 @@
         </div>
     </div>
     <h4>评价:{{food_list.raccess}}</h4>
+    <div  id="div_jQueryRaty"></div>
     <ul class="nav nav-list"> 
      <li class="divider"></li>  
     </ul>
@@ -212,7 +223,9 @@
     </div>
     <div>
                         <h1>测试数据库查询</h1>
-                        <p>{{food_list.rfoodname}}</p>
+                        <div >
+                        <p id="fruit11">{{food_list.rfoodname}}</p>
+                        </div>
     </div>
     <div>
         <h1>其他水果推荐</h1>
@@ -233,7 +246,7 @@
             {% endfor %}
         </div>
         <!-- fruit1={{food_list.rfoodname}}&fruit2={{i.rfoodname}} -->
-    </div>
+    
     <script>
     $(document).ready(function(){
       $("#ding").click(function(){
@@ -254,10 +267,25 @@
     $("#say").click(function(){
         $('#hid1').toggle();
       });
-    // for(var i=1;i<=6;i++){
-    // $("#btn"+i).click(function(){
-    //     alert("1");
-    //   });
-    // }
+    var img=$("#img1").attr("jqimg"); 
+    var name=$("#fruit11").text(); 
+    var url=location.href; 
+    var hc=img+"|"+name+"|"+url; 
+    if($.cookie("history")!=null) 
+    { 
+    if($.cookie("history").indexOf(name)==-1) 
+    {
+    $.cookie("history",hc+"*"+$.cookie("history"),{expires:8,path:"/"}); 
+    } 
+    } 
+    else 
+    {
+    $.cookie("history",hc,{expires:8,path:"/"}); 
+    }
+        $('#div_jQueryRaty').raty({ 
+            starOff: "{% static "star-off.png"%}", //指针离开时星星的图片
+            starOn: "{% static "star-on.png"%}", // 指针在星星上方时星星的图片
+            score: 4 ,
+        });
     </script>
 {% endblock %}

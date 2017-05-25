@@ -15,12 +15,13 @@
              border-radius: 50%;
         }
     </style>
-    <script src="{% static "jquery.raty.min.js"%}"></script>
+    <script src="{% static "jquery.cookie.js" %}"></script>
+    <script src="{% static "jquery.raty.min.js" %}"></script>
     <div class="row">
         <div class="col-xs-3">
             <div class="panel panel-primary">
                 <div class="leftju">
-                    <img src="{% static "per1.jpg"%}" class="img-circle">
+                    <img src="{% static "per1.jpg"%}" class="img-circle" width="200px" height="200px">
                     <div class="center-block" style="width: 100px">
                         <label>{{user_list.username}}</label>
                     </div>
@@ -61,51 +62,25 @@
                 </div>
                 <hr>
                 <h5>最近浏览记录</h5>
-                <div class="row">
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
+                <div id="history1" class="row">
+                    
                 </div>
                 <hr>
                 <h5>您可能喜欢</h5>
                 <div class="row">
+                    {% for i in need_list %}
                     <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
+                        <img src="{% static i.img %}" width="120px" height="120px">
+                        <button class="btn btn-default" style="width: 120px"><a href="#">{{ i.name }}</a></button>
                     </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="{% static "apple.jpg"%}">
-                    </div>
+                    {% endfor %}
                 </div>
                 <hr>
             </div>
         </div>
+    </div>
+    <div id="MyHistory">
+        
     </div>
     <script>
         $('#div_jQueryRaty').raty({ 
@@ -113,5 +88,58 @@
             starOn: "{% static "star-on.png"%}", // 指针在星星上方时星星的图片
             score: 3 ,
         });
+    //读取cookied历史记录 
+    $(function(){ 
+    var hc=$.cookie("history"); 
+    if(hc==null){
+    }
+    if(hc!=null) 
+    { 
+        alert(hc);
+    if(hc.indexOf("*")!=-1) 
+    {
+    var splithtml=hc.split("*"); 
+    var xhtml=new Array(); 
+    var hlength=splithtml.length; 
+    if(parseInt(hlength)>4) 
+    hlength=4; 
+    for(var i=0;i<parseInt(hlength);i++) {
+        alert("1");
+alert(splithtml[i].split("|"[0]));
+xhtml.push('<div class="col-xs-2"><img src="'+splithtml[i].split("|")[0]+'" width="120px" height="120px" ><button class="btn btn-default" style="width:120px"><a href="'+splithtml[i].split("|")[2]+'">'+splithtml[i].split("|")[1]+'</a></button></div>'); 
+}
+xhtml.push('<div class="tr"><a href="javascript:clearcookied();">清空记录</a></div>'); 
+$("#history1").append(xhtml.join("")); 
+} 
+else{ 
+var splithtml=hc.split("*"); 
+    var xhtml=new Array(); 
+    var hlength=splithtml.length; 
+    if(parseInt(hlength)>4) 
+    hlength=4; 
+    for(var i=0;i<parseInt(hlength);i++) {
+        alert("1");
+alert(splithtml[i].split("|"[0]));
+xhtml.push('<div class="col-xs-2"><img src="'+splithtml[i].split("|")[0]+'" width="120px" height="120px" ><button class="btn btn-default" style="width:120px"><a href="'+splithtml[i].split("|")[2]+'">'+splithtml[i].split("|")[1]+'</a></button></div>'); 
+}
+xhtml.push('<div class="tr"><a href="javascript:clearcookied();">清空记录</a></div>'); 
+$("#history1").append(xhtml.join("")); 
+} 
+} 
+else 
+{ 
+$("history1").append("<li>暂无浏览记录</li>"); 
+} 
+}); 
+
+function clearcookied() 
+{ 
+$.cookie('history',null,{expires:1,domain:'.nrqiang.com'}); 
+$("#MyHistory").html("<li>暂无浏览记录</li>"); 
+} 
+$(function() { 
+$("img").each(function(){$(this).attr("src",$(this) .attr("original"));}); 
+}); 
     </script>
+   
 {% endblock %}

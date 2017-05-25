@@ -39,8 +39,21 @@ def demo_form_with_template(request):
 
 def demo_form(request):
     from demo_app import models
+    value = request.COOKIES["history"]
     user_list=models.user.objects.get(username='测试用户1')
     layout = request.GET.get('layout')
+    list_test=value.split("*")
+    food_new_list=models.helfruit.objects.order_by('id')[:6]
+    need_list=[None]*6
+    food_dict={}
+    l=0
+    for i in food_new_list:
+        food_dict['name']=i.rfoodname
+        food_dict['img']=i.rfoodname+".jpg"
+        food_dict['url']='/search?food='+i.rfoodname
+        need_list[l]=food_dict
+        food_dict={}
+        l=l+1
     if not layout:
         layout = 'vertical'
     if request.method == 'POST':
@@ -53,6 +66,9 @@ def demo_form(request):
         'form': form,
         'layout': layout,
         'user_list': user_list,
+        'value':value,
+        'food_new_list':food_new_list,
+        'need_list':need_list,
     }))
 
 def demo_edituser(request):
