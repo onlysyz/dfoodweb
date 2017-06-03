@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.cache import cache
 from bootstrap_toolkit.widgets import BootstrapUneditableInput
 from django.views.decorators.csrf import csrf_exempt 
-from .forms import TestForm, TestModelForm, TestInlineForm, WidgetsForm, FormSetInlineForm
+from .forms import TestForm, TestModelForm, TestInlineForm, WidgetsForm, FormSetInlineForm,LoginForm
 import json  
 from django.http.response import HttpResponse
 import csv
@@ -20,6 +20,31 @@ def demo_index(request):
     from demo_app import models
     return render_to_response('index.html', RequestContext(request, {
         
+    }))
+
+def manage_login(request):
+    from demo_app import models
+    if request.method=="POST":
+        f=LoginForm(request.POST)
+        if f.is_valid():
+            user=f.cleaned_data["username"]
+            pwd=f.cleaned_data["password"]
+            result=models.userinfo.objects.filter(user_exact=user,pwd_exact=pwd)
+            if  result:
+                models.userinfo.objects.filter(user_exact=user).update(status=1)
+                request.session["user"]=user
+                return render_to_response('backendindex.html',RequestContext(request,{"error":f.errors,"form":f}))
+            else:
+                f.errors["password"]="密码错误"
+                return render_to_response('manage.html',RequestContext(request,{"error":f.errors,"form":f}))
+        else:
+            return render_to_response('manage.html',RequestContext(request,{"error":f.errors,"form":f}))
+
+def fruit_manage(request):
+    from demo_app import models
+    fruit_list=models.helfruit.objects.all()
+    return render_to_response('fruitmanage.html', RequestContext(request, {
+        'fruit_list':fruit_list,
     }))
 
 def demo_form_with_template(request):

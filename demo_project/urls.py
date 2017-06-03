@@ -36,4 +36,7 @@ urlpatterns = patterns('',
     url(r'^regist$','demo_app.views.demo_regist',name='regist'),
     url(r'^login$','demo_app.views.demo_logout',name='logout'),
     url(r'^registcenter$','demo_app.views.demo_registcenter',name='registcenter'),
+    url(r'^manage$', TemplateView.as_view(template_name='manage.html'), name="manage"),
+    url(r'^managelogin$', 'demo_app.views.manage_login',name='managelogin'),
+    url(r'^managefruit$', 'demo_app.views.fruit_manage',name='managefruit'),
     )

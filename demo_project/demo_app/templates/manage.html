@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+{% load staticfiles %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static "bootstrapValidator.css"%}">
+<script src="{% static "bootstrapValidator.js"%}"></script>
+<style>  
+    .juli{
+      margin-top: 100px;
+      margin-left: 360px;
+    }
+</style>
+<div class="container">
+<div class="col-xs-4 juli">
+<form action="managelogin" method="post" id="form1">
+{% csrf_token %}
+<div class="form-group">
+  <input type="text" id="userName" class="form-control" name="username" placeholder="管理员ID" aria-describedby="basic-addon1">
+  {% if error.username.0 %}
+  <span>{{error.username.0}}</span>
+  {% endif %}
+</div>
+<br>
+<!--下面是密码输入框-->
+<div class="from-group">
+  <input type="password" id="passWord" class="form-control" name="password" placeholder="密码" aria-describedby="basic-addon1">
+  {% if error.password.0 %}
+  <span>{{error.password.0}}</span>
+  {% endif %}
+  {% if error.password %}
+  <span>{{error.password }}</span>
+  {% endif %}
+</div>
+<br>
+<!--下面是登陆按钮,包括颜色控制-->
+<button type="submit" style="width:350px;" class="btn btn-default">登 录</button>
+</form>
+</div>
+</div>
+
+{% endblock %}

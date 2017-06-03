@@ -47,3 +47,7 @@ class food(models.Model):
 	author=models.CharField(max_length=12)
 	image=models.CharField(max_length=12)
 	
+class userinfo(models.Model):
+	user_exact=models.CharField(max_length=50)
+	pwd_exact=models.CharField(max_length=50)
+	status=models.CharField(max_length=4)

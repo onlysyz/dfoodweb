@@ -36,19 +36,13 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">健康管家</a>
+        <a class="navbar-brand" href="#">后台管理系统</a>
     </div>
         <ul class="nav navbar-nav">
-                <li><a href="{% url 'home' %}" class="">主页</a></li>
-                <li><a href="{% url 'demo_app.views.demo_form' %}">私人推荐</a></li>
-                <li><a href="{% url 'formset' %}">水果广场</a></li>
-                <li><a href="{% url 'tabs' %}">卡路里计算器</a></li>
-                <li><a href="{% url 'pagination' %}">营养食谱</a></li>
-                <li><a href="{% url 'buttons' %}">讨论区</a></li>
-                <li><a href="{% url 'contact' %}">开发心得</a></li>
+                <li><a href="/managefruit" class="">水果管理</a></li>
+                <li><a href="{% url 'demo_app.views.demo_form' %}">资讯管理</a></li>
+                <li><a href="{% url 'formset' %}">讨论区管理</a></li>
             </ul>
-        <btn class="pull-right" data-toggle="modal" data-target="#loginModal" >登录</btn>
-        <btn class="pull-right" ><a href="/regist">注册</a></btn>
         </div>
 </nav>
 
@@ -74,33 +68,6 @@
     </footer>
 
 </div> <!-- container -->
- <div id="loginModal" class="modal topjianju"  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">x</button>
-        <h1 class="text-center text-primary">登录</h1>
-      </div>
-      <div class="modal-body">
-        <form action="" class="form col-md-12 center-block">
-          <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="电子邮件">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control input-lg" placeholder="登录密码">
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary btn-lg btn-block">立刻登录</button>
-            <span><a href="#">找回密码</a></span>
-            <span><a href="/regist" class="pull-right">注册</a></span>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        
-      </div>
-    </div>
-  </div>
-</div>
+ 
 </body>
 </html>
